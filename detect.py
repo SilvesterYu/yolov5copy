@@ -102,15 +102,23 @@ def run(
     else:
         dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
         bs = 1  # batch_size
-    print("+++++")
-    for item in dataset:
-        print(item)
     vid_path, vid_writer = [None] * bs, [None] * bs
 
     # Run inference
     model.warmup(imgsz=(1 if pt else bs, 3, *imgsz))  # warmup
     dt, seen = [0.0, 0.0, 0.0], 0
     for path, im, im0s, vid_cap, s in dataset:
+        # --
+        print(path)
+        print("---")
+        print(im)
+        print("---")
+        print(im0s)
+        print("---")
+        print(vid_cap)
+        print("---")
+        print(s)
+        # --
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
         im = im.half() if model.fp16 else im.float()  # uint8 to fp16/32
