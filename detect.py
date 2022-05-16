@@ -182,7 +182,7 @@ def run(
                 print(im.shape)
                 print(im0.shape)
                 #--
-
+                
                 # Print results
                 for c in det[:, -1].unique():
                     n = (det[:, -1] == c).sum()  # detections per class

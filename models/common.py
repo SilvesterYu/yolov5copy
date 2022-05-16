@@ -484,6 +484,11 @@ class DetectMultiBackend(nn.Module):
                 if int8:
                     scale, zero_point = output['quantization']
                     y = (y.astype(np.float32) - zero_point) * scale  # re-scale
+            # --
+            print("----- w h ----")
+            print(w)
+            print(h)
+            # --
             y[..., :4] *= [w, h, w, h]  # xywh normalized to pixels
 
         if isinstance(y, np.ndarray):
