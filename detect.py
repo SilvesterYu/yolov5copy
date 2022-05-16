@@ -193,8 +193,10 @@ def run(
                 print(det)
                 print(det[:, :4])
                 print(type(im))
+                print(im)
                 print(im.shape)
                 print(type(im0))
+                print(im0)
                 print(im0.shape)
                 #--
                 
