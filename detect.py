@@ -144,10 +144,12 @@ def run(
 
         # Process predictions
         for i, det in enumerate(pred):  # per image
+            # --
             print("-"*10, "enumerate pred", "-"*10)
-            print(i)
-            print("---")
+            # print(i)
+            # print("---")
             print(det)
+            # --
             seen += 1
             if webcam:  # batch_size >= 1
                 p, im0, frame = path[i], im0s[i].copy(), dataset.count
@@ -177,6 +179,8 @@ def run(
                 print("----------det----------")
                 print(det)
                 print(det[:, :4])
+                print(im.shape)
+                print(im0.shape)
                 #--
 
                 # Print results
