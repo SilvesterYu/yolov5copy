@@ -151,10 +151,12 @@ def run(
             else:
                 p, im0, frame = path, im0s.copy(), getattr(dataset, 'frame', 0)
                 # --
+                '''
                 print("-"*10, "frame", "-"*10)
                 print(p)
                 print("---")
                 print(im0)
+                '''
                 # --
 
             p = Path(p)  # to Path
@@ -166,6 +168,10 @@ def run(
             annotator = Annotator(im0, line_width=line_thickness, example=str(names))
             if len(det):
                 # Rescale boxes from img_size to im0 size
+                #--
+                print("----------det----------")
+                print(det)
+                #--
                 det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0.shape).round()
 
                 # Print results
@@ -179,12 +185,14 @@ def run(
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                         line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
                         # --
+                        '''
                         print("-"*10, "txt_path", "-"*10)
                         print("save conf")
                         print(save_conf)
                         print("line")
                         print(line)
                         print(txt_path)
+                        '''
                         # --
                         with open(f'{txt_path}.txt', 'a') as f:
                             f.write(('%g ' * len(line)).rstrip() % line + '\n')
@@ -204,10 +212,6 @@ def run(
 
             # Save results (image with detections)
             if save_img:
-                # --
-                print("-"*10, "save img", "-"*10)
-                print(save_path)
-                # --
                 if dataset.mode == 'image':
                     cv2.imwrite(save_path, im0)
                 else:  # 'video' or 'stream'
