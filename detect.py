@@ -139,11 +139,11 @@ def run(
         # pred = utils.general.apply_classifier(pred, classifier_model, im, im0s)
 
         # Process predictions
-        # --
-        print("-"*10, "enumerate pred", "-"*10)
-        print(enumerate(pred))
-        # --
         for i, det in enumerate(pred):  # per image
+            print("-"*10, "enumerate pred", "-"*10)
+            print(i)
+            print("---")
+            print(det)
             seen += 1
             if webcam:  # batch_size >= 1
                 p, im0, frame = path[i], im0s[i].copy(), dataset.count
