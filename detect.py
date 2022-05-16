@@ -203,6 +203,10 @@ def run(
 
             # Save results (image with detections)
             if save_img:
+                # --
+                print("-"*10, "save img, "-"*10")
+                print(save_path)
+                # --
                 if dataset.mode == 'image':
                     cv2.imwrite(save_path, im0)
                 else:  # 'video' or 'stream'
