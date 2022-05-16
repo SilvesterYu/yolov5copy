@@ -121,7 +121,7 @@ def run(
         visualize = increment_path(save_dir / Path(path).stem, mkdir=True) if visualize else False
         pred = model(im, augment=augment, visualize=visualize)
         # --
-        print("initial prediction")
+        print("----------initial prediction----------")
         print(pred)
         # --
         t3 = time_sync()
@@ -129,6 +129,10 @@ def run(
 
         # NMS
         pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
+        # --
+        print("----------processed prediction----------")
+        print(pred)
+        # --
         dt[2] += time_sync() - t3
 
         # Second-stage classifier (optional)
@@ -142,6 +146,10 @@ def run(
                 s += f'{i}: '
             else:
                 p, im0, frame = path, im0s.copy(), getattr(dataset, 'frame', 0)
+                # --
+                print("-"*10, "frame", "-"*10)
+                print(frame)
+                # --
 
             p = Path(p)  # to Path
             save_path = str(save_dir / p.name)  # im.jpg
