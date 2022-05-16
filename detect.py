@@ -109,6 +109,7 @@ def run(
     dt, seen = [0.0, 0.0, 0.0], 0
     for path, im, im0s, vid_cap, s in dataset:
         # --
+        '''
         print(path)
         print("---")
         print(im)
@@ -118,6 +119,7 @@ def run(
         print(vid_cap)
         print("---")
         print(s)
+        '''
         # --
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
@@ -190,7 +192,9 @@ def run(
                 print("----------det----------")
                 print(det)
                 print(det[:, :4])
+                print(type(im))
                 print(im.shape)
+                print(type(im0))
                 print(im0.shape)
                 #--
                 
