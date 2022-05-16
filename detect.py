@@ -180,6 +180,8 @@ def run(
                         line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
                         # --
                         print("-"*10, "txt_path", "-"*10)
+                        print("line")
+                        print(line)
                         print(txt_path)
                         # --
                         with open(f'{txt_path}.txt', 'a') as f:
