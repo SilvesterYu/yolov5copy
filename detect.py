@@ -176,6 +176,7 @@ def run(
                 #--
                 print("----------det----------")
                 print(det)
+                print(det[:, :4])
                 #--
 
                 # Print results
