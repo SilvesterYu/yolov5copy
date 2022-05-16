@@ -431,6 +431,11 @@ class DetectMultiBackend(nn.Module):
     def forward(self, im, augment=False, visualize=False, val=False):
         # YOLOv5 MultiBackend inference
         b, ch, h, w = im.shape  # batch, channel, height, width
+        # --
+        print("----- w h ----")
+        print(w)
+        print(h)
+        # --
         if self.pt:  # PyTorch
             y = self.model(im, augment=augment, visualize=visualize)[0]
         elif self.jit:  # TorchScript
@@ -484,11 +489,6 @@ class DetectMultiBackend(nn.Module):
                 if int8:
                     scale, zero_point = output['quantization']
                     y = (y.astype(np.float32) - zero_point) * scale  # re-scale
-            # --
-            print("----- w h ----")
-            print(w)
-            print(h)
-            # --
             y[..., :4] *= [w, h, w, h]  # xywh normalized to pixels
 
         if isinstance(y, np.ndarray):
