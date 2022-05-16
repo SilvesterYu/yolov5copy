@@ -121,8 +121,10 @@ def run(
         visualize = increment_path(save_dir / Path(path).stem, mkdir=True) if visualize else False
         pred = model(im, augment=augment, visualize=visualize)
         # --
+        '''
         print("----------initial prediction----------")
         print(pred)
+        '''
         # --
         t3 = time_sync()
         dt[1] += t3 - t2
@@ -130,8 +132,10 @@ def run(
         # NMS
         pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
         # --
+        '''
         print("----------processed prediction----------")
         print(pred)
+        '''
         # --
         dt[2] += time_sync() - t3
 
@@ -168,11 +172,11 @@ def run(
             annotator = Annotator(im0, line_width=line_thickness, example=str(names))
             if len(det):
                 # Rescale boxes from img_size to im0 size
+                det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0.shape).round()
                 #--
                 print("----------det----------")
                 print(det)
                 #--
-                det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0.shape).round()
 
                 # Print results
                 for c in det[:, -1].unique():
