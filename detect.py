@@ -28,6 +28,7 @@ import argparse
 import os
 import sys
 from pathlib import Path
+from tracemalloc import _FrameTupleT
 
 import torch
 import torch.backends.cudnn as cudnn
@@ -152,6 +153,10 @@ def run(
                 p, im0, frame = path, im0s.copy(), getattr(dataset, 'frame', 0)
                 # --
                 print("-"*10, "frame", "-"*10)
+                print(p)
+                print("---")
+                print(im0)
+                print("---")
                 print(frame)
                 # --
 
