@@ -179,6 +179,7 @@ def run(
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                         line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
                         # --
+                        print("-"*10, "txt_path", "-"*10)
                         print(txt_path)
                         # --
                         with open(f'{txt_path}.txt', 'a') as f:
