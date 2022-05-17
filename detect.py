@@ -143,6 +143,7 @@ def run(
         dt[1] += t3 - t2
 
         # NMS
+        # -- reject overlapping bounding boxes -- #
         pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
         # --
         '''
