@@ -10,7 +10,9 @@ self.im is an input from detect.py, which is im0. im0 comes from im0s.copy(). im
 
 utils\dataloaders.py: defined LoadStreams() class which returns im0
 
-Used Annotator().box_label() function. It # Add one xyxy box to image with label
+Used Annotator().box_label() function. It # Add one xyxy box to image with label. It called cv2.rectangle() function, did something to self.im
+
+annotator instance in detect.py returned annotator.result(), which is an np array of self.im. The code is "im0 = annotator.result()"
 
 #### Todo: find out what exactly is im0
 
