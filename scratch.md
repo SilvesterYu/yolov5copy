@@ -10,6 +10,8 @@ self.im is an input from detect.py, which is im0. im0 comes from im0s.copy(). im
 
 utils\dataloaders.py: defined LoadStreams() class which returns im0
 
+Used Annotator().box_label() function. It # Add one xyxy box to image with label
+
 #### Todo: find out what exactly is im0
 
 Annotator() has a rectangle() functions that adds  # Add rectangle to image (PIL-only)
