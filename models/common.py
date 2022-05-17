@@ -515,10 +515,8 @@ class DetectMultiBackend(nn.Module):
         tflite &= not edgetpu  # *.tflite
         return pt, jit, onnx, xml, engine, coreml, saved_model, pb, tflite, edgetpu, tfjs
 
-
+# -- possible anchor -- #
 class AutoShape(nn.Module):
-    print("=================")
-    print("autoshape")
     # YOLOv5 input-robust model wrapper for passing cv2/np/PIL/torch inputs. Includes preprocessing, inference and NMS
     conf = 0.25  # NMS confidence threshold
     iou = 0.45  # NMS IoU threshold

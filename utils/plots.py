@@ -64,7 +64,7 @@ def check_pil_font(font=FONT, size=10):
         except URLError:  # not online
             return ImageFont.load_default()
 
-
+# -- possible anchor -- #
 class Annotator:
     # YOLOv5 Annotator for train/val mosaics and jpgs and detect/hub inference annotations
     def __init__(self, im, line_width=None, font_size=None, font='Arial.ttf', pil=False, example='abc'):
