@@ -190,6 +190,7 @@ def run(
                 # Rescale boxes from img_size to im0 size
                 det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0.shape).round()
                 #--
+                '''
                 print("----------det----------")
                 print(det)
                 print(det[:, :4])
@@ -199,6 +200,7 @@ def run(
                 print(type(im0))
                 print(im0)
                 print(im0.shape)
+                '''
                 #--
                 
                 # Print results

@@ -71,7 +71,13 @@ class Annotator:
         assert im.data.contiguous, 'Image not contiguous. Apply np.ascontiguousarray(im) to Annotator() input images.'
         non_ascii = not is_ascii(example)  # non-latin labels, i.e. asian, arabic, cyrillic
         self.pil = pil or non_ascii
+        # --
+        print("--------------hi here is annotation ----------------")
+        # --
         if self.pil:  # use PIL
+            # --
+            print("-------- hi using pillow ------------")
+            # --
             self.im = im if isinstance(im, Image.Image) else Image.fromarray(im)
             self.draw = ImageDraw.Draw(self.im)
             self.font = check_pil_font(font='Arial.Unicode.ttf' if non_ascii else font,
@@ -215,9 +221,6 @@ def plot_images(images, targets, paths=None, fname='images.jpg', names=None, max
         mosaic = cv2.resize(mosaic, tuple(int(x * ns) for x in (w, h)))
 
     # Annotate
-    # --
-    print("--------------hi here is annotation ----------------")
-    # --
     fs = int((h + w) * ns * 0.01)  # font size
     annotator = Annotator(mosaic, line_width=round(fs / 10), font_size=fs, pil=True, example=names)
     for i in range(i + 1):
