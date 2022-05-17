@@ -25,7 +25,7 @@ source yolo_env/bin/activate
 Then cd into yolo_env/yolov5
 
 ```
-cd  yolo_env/yolov5
+cd  yolo_env/yolov5copy
 ```
 
 Download a custom image from the internet 
