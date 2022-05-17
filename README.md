@@ -22,7 +22,7 @@ Activate yolo environment
 source yolo_env/bin/activate
 ```
 
-then cd into yolo_env/yolov5
+Then cd into yolo_env/yolov5
 
 ```
 cd  yolo_env/yolov5
