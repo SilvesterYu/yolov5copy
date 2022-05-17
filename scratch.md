@@ -1,4 +1,4 @@
-## Possible anchor
+## Clues
 
 detect.py: referenced class Annotator()
 
@@ -9,6 +9,8 @@ Annotator() has self.draw, which comes from PIL import Image, ImageDraw, ImageFo
 self.im is an input from detect.py, which is im0. im0 comes from im0s.copy(). im0s comes from dataset. im0s coms from LoadStreams() from source
 
 utils\dataloaders.py: defined LoadStreams() class which returns im0
+
+Used Annotator().box_label() function. It # Add one xyxy box to image with label
 
 #### Todo: find out what exactly is im0
 
