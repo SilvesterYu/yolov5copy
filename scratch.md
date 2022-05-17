@@ -1,4 +1,4 @@
-## Possible anchor
+## Clues
 
 detect.py: referenced class Annotator()
 
