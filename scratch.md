@@ -12,6 +12,10 @@ utils\dataloaders.py: defined LoadStreams() class which returns im0
 
 #### Todo: find out what exactly is im0
 
+Annotator() has a rectangle() functions that adds  # Add rectangle to image (PIL-only)
+
+utils\plots.py: plot_images() function references Annotator.rectangle(), which is used to annotate the result images
+
 ---
 
 hubconf.py: referenced AutoShape()
