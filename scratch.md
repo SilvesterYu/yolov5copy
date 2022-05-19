@@ -48,3 +48,7 @@ models\common.py: defined AutoShape()
 ## Conclusions and must-dos
 
 If we want to change the shape of anchor boxes, xywh2xyxy has to be modified
+
+I need a custom dataset. I'll then take the labeled boxes and first transform them into circles on the fly
+
+The IoU loss function needs to be recalculated (using calculus)
