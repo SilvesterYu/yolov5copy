@@ -22,6 +22,13 @@ utils\plots.py: plot_images() function references Annotator.rectangle(), which i
 
 ---
 
+utils\plots.py defined a plot_images() function, which uses *boxes = xywh2xyxy*(ti[:, 2:6]).T
+
+utils\general.py defined *xywh2xyxy()* function, # Convert nx4 boxes from [x, y, w, h] to [x1, y1, x2, y2] where xy1=top-left, xy2=bottom-right
+
+
+---
+
 hubconf.py: referenced AutoShape()
 
 models\common.py: defined AutoShape()
