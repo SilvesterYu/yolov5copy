@@ -38,3 +38,9 @@ used plot_labels which calls *xywh2xyxy* function
 hubconf.py: referenced AutoShape()
 
 models\common.py: defined AutoShape()
+
+---
+
+## Conclusions and must-dos
+
+If we want to change the shape of anchor boxes, xywh2xyxy has to be modified
