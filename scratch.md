@@ -20,6 +20,8 @@ Annotator() has a rectangle() functions that adds  # Add rectangle to image (PIL
 
 utils\plots.py: plot_images() function references Annotator.rectangle(), which is used to annotate the result images
 
+**plot_labels()** plots the labels and rectangles
+
 ---
 
 utils\plots.py uses *xywh2xyxy* function in plot_labels() function, plot_images(), 
@@ -32,6 +34,8 @@ utils\general.py defined *xywh2xyxy()* function, # Convert nx4 boxes from [x, y,
 ### Train.py
 
 used plot_labels which calls *xywh2xyxy* function
+
+labels is fed into plot_labels, labels come from labels = np.concatenate(dataset.labels, 0)
 
 ---
 
