@@ -132,7 +132,7 @@ class Annotator:
                 # cv2.rectangle(self.im, p11, p22, color, -1, cv2.LINE_AA)  # filled
                 # --
 
-                cv2.rectangle(self.im, p1, p2, color, -1, cv2.LINE_AA)  # filled
+                cv2.rectangle(self.im, p11, p22, color, -1, cv2.LINE_AA)  # filled
 
                 cv2.putText(self.im,
                             label, (p1[0], p1[1] - 2 if outside else p1[1] + h + 2),
