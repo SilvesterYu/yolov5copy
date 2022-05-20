@@ -380,6 +380,7 @@ def plot_labels(labels, names=(), save_dir=Path('')):
     img = Image.fromarray(np.ones((2000, 2000, 3), dtype=np.uint8) * 255)
     print("!"*100)
     print("from plots.py, labels[:1000]")
+    print("length of labels:", len(labels))
     print(labels[:1000])
     print("!"*100)
     for cls, *box in labels[:1000]:
