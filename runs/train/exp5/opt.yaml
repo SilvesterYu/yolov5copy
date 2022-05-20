@@ -2,7 +2,7 @@ weights: ''
 cfg: /home/ubuntu/yolo_env/yolov5copy/models/yolov5s.yaml
 data: /home/ubuntu/yolo_env/yolov5copy/data/coco128.yaml
 hyp: data/hyps/hyp.scratch-low.yaml
-epochs: 300
+epochs: 5
 batch_size: 128
 imgsz: 640
 rect: false
