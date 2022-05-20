@@ -143,8 +143,8 @@ class Annotator:
                             0,
                             self.lw / 3,
                             txt_color,
-                            thickness=tf,
-                            lineType=cv2.LINE_AA)
+                            thickness=tf
+                            )
                 print("done put text")
 
     def rectangle(self, xy, fill=None, outline=None, width=1):
