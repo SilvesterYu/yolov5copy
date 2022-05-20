@@ -343,6 +343,10 @@ def plot_val_study(file='', dir='', x=None):  # from utils.plots import *; plot_
 @Timeout(30)  # known issue https://github.com/ultralytics/yolov5/issues/5611
 def plot_labels(labels, names=(), save_dir=Path('')):
     # plot dataset labels
+    print("&"*100)
+    print("This is plot_labels() function from utils\plots.py, labels are as follows")
+    print(labels)
+    print("&"*100)
     LOGGER.info(f"Plotting labels to {save_dir / 'labels.jpg'}... ")
     c, b = labels[:, 0], labels[:, 1:].transpose()  # classes, boxes
     nc = int(c.max() + 1)  # number of classes
