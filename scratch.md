@@ -55,6 +55,9 @@ annotations for each image in form of a .txt file where each line of the text fi
 
 - Class numbers are zero-indexed (start from 0).
 
+![image](https://user-images.githubusercontent.com/74582280/169490616-4ed91638-3b9c-4fc4-94be-df2282ac8a37.png)
+
+
 ---
 
 hubconf.py: referenced AutoShape()
