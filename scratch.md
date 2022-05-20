@@ -5,6 +5,11 @@ python train.py --data coco128.yaml --cfg yolov5s.yaml --weights '' --batch-size
 
 ```
 
+```
+python train.py --data coco128.yaml --cfg yolov5s.yaml --weights '' --batch-size 128 --epochs 1
+
+```
+
 train path: yolo_env/datasets/coco128/images/train2017 
 
 val path: yolo_env/datasets/coco128/images/train2017
