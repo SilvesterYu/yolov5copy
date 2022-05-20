@@ -41,6 +41,22 @@ dataset comes from create_dataloader. train_path is fed.
 
 ---
 
+### Dataset Labels Format
+
+Location: yolo_env/datasets/coco128/labels/
+
+annotations for each image in form of a .txt file where each line of the text file describes a bounding box. 
+
+- One row per object
+
+- Each row is class x_center y_center width height format.
+
+- Box coordinates must be normalized by the dimensions of the image (i.e. have values between 0 and 1)
+
+- Class numbers are zero-indexed (start from 0).
+
+---
+
 hubconf.py: referenced AutoShape()
 
 models\common.py: defined AutoShape()
