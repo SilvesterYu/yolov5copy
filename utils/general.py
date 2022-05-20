@@ -658,6 +658,15 @@ def xywh2xyxy(x):
     print("from general.py, xywh2xyxy")
     print("before")
     print(y)
+    print("---")
+    print(x[:, 0])
+    print("---")
+    print(x[:, 1])
+    print("---")
+    print(x[:, 2])
+    print("---")
+    print(x[:, 3])
+    print("---")
     y[:, 0] = x[:, 0] - x[:, 2] / 2  # top left x
     y[:, 1] = x[:, 1] - x[:, 3] / 2  # top left y
     y[:, 2] = x[:, 0] + x[:, 2] / 2  # bottom right x
