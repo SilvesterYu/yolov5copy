@@ -376,14 +376,14 @@ def plot_labels(labels, names=(), save_dir=Path('')):
 
     # rectangles
     labels[:, 1:3] = 0.5  # center
+    # -- represent each anchor box with top-left (x1, y1) and bottom-right (x2, y2) -- #
     labels[:, 1:] = xywh2xyxy(labels[:, 1:]) * 2000
     img = Image.fromarray(np.ones((2000, 2000, 3), dtype=np.uint8) * 255)
-    print("!"*100)
-    print("from plots.py, labels[:1000]")
-    print("length of labels:", len(labels))
-    print(labels[:1000])
-    print("!"*100)
     for cls, *box in labels[:1000]:
+        print("!"*100)
+        print(cls)
+        print(*box)
+        print("!"*100)
         ImageDraw.Draw(img).rectangle(box, width=1, outline=colors(cls))  # plot
     ax[1].imshow(img)
     ax[1].axis('off')
