@@ -98,8 +98,9 @@ class Annotator:
         else:  # cv2
             p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
             p11, p22 = (int(box[0]/2), int(box[1]/2)), (int(box[2]/2), int(box[3]/2))
-            cv2.rectangle(self.im, p11, p22, color, thickness=self.lw, lineType=cv2.LINE_AA)
-
+            # cv2.rectangle(self.im, p11, p22, color, thickness=self.lw, lineType=cv2.LINE_AA)
+            cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness, cv2.CV_AA)
+                
             # -- elllipse data -- #
             center_x = int((int(box[0]) + int(box[2]))/4)
             center_y = int((int(box[1]) + int(box[3]))/4)
@@ -132,7 +133,7 @@ class Annotator:
                 # cv2.rectangle(self.im, p11, p22, color, -1, cv2.LINE_AA)  # filled
                 # --
 
-                cv2.rectangle(self.im, p11, p22, color, -1, cv2.LINE_AA)  # filled
+                # cv2.rectangle(self.im, p11, p22, color, -1, cv2.LINE_AA)  # filled
 
                 cv2.putText(self.im,
                             label, (p1[0], p1[1] - 2 if outside else p1[1] + h + 2),
