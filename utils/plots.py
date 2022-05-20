@@ -391,6 +391,9 @@ def plot_labels(labels, names=(), save_dir=Path('')):
     for a in [0, 1, 2, 3]:
         for s in ['top', 'right', 'left', 'bottom']:
             ax[a].spines[s].set_visible(False)
+            
+    print(" ) "*100)
+    print(save_dir)
 
     plt.savefig(save_dir / 'labels.jpg', dpi=200)
     matplotlib.use('Agg')
