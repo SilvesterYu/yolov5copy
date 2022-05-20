@@ -382,10 +382,9 @@ def plot_labels(labels, names=(), save_dir=Path('')):
     print(labels[:1000])
     print("!"*100)
     for cls, *box in labels[:1000]:
-        print(cls)
-        print(*box)
-        print("="*100)
-        ImageDraw.Draw(img).rectangle(box, width=1, outline=colors(cls))  # plot
+        # -- converting the xywh to xyxy is just for imageDraw's input format -- #
+        # -- imageDraw will draw with the provided coordinates -- #
+        ImageDraw.Draw(img).rectangle(box, fill ="# ffff33", width=1, outline=colors(cls))  # plot
     ax[1].imshow(img)
     ax[1].axis('off')
 
