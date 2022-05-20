@@ -97,7 +97,7 @@ class Annotator:
                 self.draw.text((box[0], box[1] - h if outside else box[1]), label, fill=txt_color, font=self.font)
         else:  # cv2
             p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
-            #cv2.rectangle(self.im, p1, p2, color, thickness=self.lw, lineType=cv2.LINE_AA)
+            cv2.rectangle(self.im, p1, p2, color, thickness=self.lw, lineType=cv2.LINE_AA)
 
             # -- elllipse data -- #
             center_x = int((int(box[0]) + int(box[2]))/2)
@@ -115,8 +115,7 @@ class Annotator:
             endAngle = 180
             thickness = -1
 
-            cv2.ellipse(self.im, center_coordinates, axesLength, angle,
-                                    startAngle, endAngle, color, thickness)
+            #cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness)
 
             # -- end of ellipse data -- #
             if label:
