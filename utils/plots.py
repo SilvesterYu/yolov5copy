@@ -101,8 +101,8 @@ class Annotator:
             cv2.rectangle(self.im, p11, p22, color, thickness=self.lw, lineType=cv2.LINE_AA)
 
             # -- elllipse data -- #
-            center_x = int((int(box[0]) + int(box[2]))/2)
-            center_y = int((int(box[1]) + int(box[3]))/2)
+            center_x = int((int(box[0]) + int(box[2]))/4)
+            center_y = int((int(box[1]) + int(box[3]))/4)
             axis_x = int((box[2]) - int(box[0])/10)
             axis_y = int((box[3]) - int(box[1])/10)
 
