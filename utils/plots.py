@@ -128,7 +128,7 @@ class Annotator:
 
                 # -- ellipse -- #
                 cv2.ellipse(self.im, center_coordinates, axesLength, angle,
-                                    startAngle, endAngle, color, thickness)
+                                    startAngle, endAngle, color, thickness, cv2.LINE_AA)
                 # --
 
                 cv2.putText(self.im,
