@@ -106,19 +106,19 @@ class Annotator:
             axis_x = int(((box[2]) - int(box[0]))/2)
             axis_y = int(((box[3]) - int(box[1]))/2)
 
-            print("-"*30)
-            print(center_x, center_y, axis_x, axis_y)
-            print(p1, p2)
+            #print("-"*30)
+            #print(center_x, center_y, axis_x, axis_y)
+            #print(p1, p2)
 
             center_coordinates = (center_x, center_y)
             axesLength = (axis_x, axis_y)
             angle = 0
             startAngle = 0
             endAngle = 360
-            thickness = -1
+            thickness = self.lw
 
             #cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness)
-            cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness=self.lw)
+            cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness)
             
             # -- end of ellipse data -- #
             if label:
@@ -129,7 +129,7 @@ class Annotator:
                 
 
                 # -- ellipse -- #
-                cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness=self.lw)
+                cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness)
                 # cv2.rectangle(self.im, p11, p22, color, -1, cv2.LINE_AA)  # filled
                 # --
 
