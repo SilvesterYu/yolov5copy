@@ -384,7 +384,7 @@ def plot_labels(labels, names=(), save_dir=Path('')):
     for cls, *box in labels[:1000]:
         # -- converting the xywh to xyxy is just for imageDraw's input format -- #
         # -- imageDraw will draw with the provided coordinates -- #
-        ImageDraw.Draw(img).ellipse(box, fill="blue", width=1, outline=colors(cls))  # plot
+        ImageDraw.Draw(img).ellipse(box, width=1, outline=colors(cls))  # plot
     ax[1].imshow(img)
     ax[1].axis('off')
 
