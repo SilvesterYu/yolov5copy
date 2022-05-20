@@ -103,8 +103,8 @@ class Annotator:
             # -- elllipse data -- #
             center_x = int((int(box[0]) + int(box[2]))/4)
             center_y = int((int(box[1]) + int(box[3]))/4)
-            axis_x = int((box[2]) - int(box[0])/20)
-            axis_y = int((box[3]) - int(box[1])/20)
+            axis_x = int(((box[2]) - int(box[0]))/2)
+            axis_y = int(((box[3]) - int(box[1]))/2)
 
             print("-"*30)
             print(center_x, center_y, axis_x, axis_y)
