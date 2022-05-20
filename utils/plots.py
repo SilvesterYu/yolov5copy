@@ -103,8 +103,8 @@ class Annotator:
             # -- elllipse data -- #
             center_x = int((int(box[0]) + int(box[2]))/4)
             center_y = int((int(box[1]) + int(box[3]))/4)
-            axis_x = int((box[2]) - int(box[0])/10)
-            axis_y = int((box[3]) - int(box[1])/10)
+            axis_x = int((box[2]) - int(box[0])/20)
+            axis_y = int((box[3]) - int(box[1])/20)
 
             print("-"*30)
             print(center_x, center_y, axis_x, axis_y)
@@ -114,7 +114,7 @@ class Annotator:
             axesLength = (axis_x, axis_y)
             angle = 0
             startAngle = 0
-            endAngle = 180
+            endAngle = 360
             thickness = -1
 
             #cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness)
