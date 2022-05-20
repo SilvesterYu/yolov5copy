@@ -99,7 +99,6 @@ class Annotator:
             p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
             p11, p22 = (int(box[0]/2), int(box[1]/2)), (int(box[2]/2), int(box[3]/2))
             # cv2.rectangle(self.im, p11, p22, color, thickness=self.lw, lineType=cv2.LINE_AA)
-            cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness, cv2.CV_AA)
                 
             # -- elllipse data -- #
             center_x = int((int(box[0]) + int(box[2]))/4)
@@ -119,7 +118,8 @@ class Annotator:
             thickness = -1
 
             #cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness)
-
+            cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness, cv2.CV_AA)
+            
             # -- end of ellipse data -- #
             if label:
                 tf = max(self.lw - 1, 1)  # font thickness
