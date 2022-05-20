@@ -138,6 +138,25 @@ class Annotator:
                 # -- need edit -- #
                 print("This is outside", outside)
                 print("These are p1", p1[0], p1[1] - 2)
+                
+                # font
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                
+                # org
+                org = (50, 50)
+                
+                # fontScale
+                fontScale = 1
+                
+                # Blue color in BGR
+                color = (255, 0, 0)
+                
+                # Line thickness of 2 px
+                thickness = 2
+                
+                # Using cv2.putText() method
+                cv2.putText(self.im, 'OpenCV', org, font, 
+                                fontScale, color, thickness, cv2.LINE_AA)
                 cv2.putText(self.im,
                             label, (p1[0], p1[1] - 2 if outside else p1[1] + h + 2),
                             0,
