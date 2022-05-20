@@ -86,6 +86,10 @@ class Annotator:
         if self.pil or not is_ascii(label):
             self.draw.rectangle(box, width=self.lw, outline=color)  # box
             if label:
+                print("%"*100)
+                print("This is from plots.py Annotator class box_label() function, add xyxy box label is as follows")
+                print(label)
+                print("%"*100)
                 w, h = self.font.getsize(label)  # text width, height
                 outside = box[1] - h >= 0  # label fits outside box
                 self.draw.rectangle(
