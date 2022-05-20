@@ -108,19 +108,6 @@ def run(
     model.warmup(imgsz=(1 if pt else bs, 3, *imgsz))  # warmup
     dt, seen = [0.0, 0.0, 0.0], 0
     for path, im, im0s, vid_cap, s in dataset:
-        # --
-        '''
-        print(path)
-        print("---")
-        print(im)
-        print("---")
-        print(im0s)
-        print("---")
-        print(vid_cap)
-        print("---")
-        print(s)
-        '''
-        # --
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
         im = im.half() if model.fp16 else im.float()  # uint8 to fp16/32
@@ -133,24 +120,13 @@ def run(
         # Inference
         visualize = increment_path(save_dir / Path(path).stem, mkdir=True) if visualize else False
         pred = model(im, augment=augment, visualize=visualize)
-        # --
-        '''
-        print("----------initial prediction----------")
-        print(pred)
-        '''
-        # --
         t3 = time_sync()
         dt[1] += t3 - t2
 
         # NMS
         # -- reject overlapping bounding boxes -- #
         pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
-        # --
-        '''
-        print("----------processed prediction----------")
-        print(pred)
-        '''
-        # --
+
         dt[2] += time_sync() - t3
 
         # Second-stage classifier (optional)
@@ -158,26 +134,12 @@ def run(
 
         # Process predictions
         for i, det in enumerate(pred):  # per image
-            # --
-            print("-"*10, "enumerate pred", "-"*10)
-            # print(i)
-            # print("---")
-            print(det)
-            # --
             seen += 1
             if webcam:  # batch_size >= 1
                 p, im0, frame = path[i], im0s[i].copy(), dataset.count
                 s += f'{i}: '
             else:
                 p, im0, frame = path, im0s.copy(), getattr(dataset, 'frame', 0)
-                # --
-                '''
-                print("-"*10, "frame", "-"*10)
-                print(p)
-                print("---")
-                print(im0)
-                '''
-                # --
 
             p = Path(p)  # to Path
             save_path = str(save_dir / p.name)  # im.jpg
@@ -189,20 +151,7 @@ def run(
             if len(det):
                 # Rescale boxes from img_size to im0 size
                 det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0.shape).round()
-                #--
-                '''
-                print("----------det----------")
-                print(det)
-                print(det[:, :4])
-                print(type(im))
-                print(im)
-                print(im.shape)
-                print(type(im0))
-                print(im0)
-                print(im0.shape)
-                '''
-                #--
-                
+
                 # Print results
                 for c in det[:, -1].unique():
                     n = (det[:, -1] == c).sum()  # detections per class
@@ -213,22 +162,13 @@ def run(
                     if save_txt:  # Write to file
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                         line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
-                        # --
-                        '''
-                        print("-"*10, "txt_path", "-"*10)
-                        print("save conf")
-                        print(save_conf)
-                        print("line")
-                        print(line)
-                        print(txt_path)
-                        '''
-                        # --
                         with open(f'{txt_path}.txt', 'a') as f:
                             f.write(('%g ' * len(line)).rstrip() % line + '\n')
 
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
+                        # -- anchor -- #
                         annotator.box_label(xyxy, label, color=colors(c, True))
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
