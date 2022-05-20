@@ -53,6 +53,13 @@ tiv runs/detect/exp3/Best-farm-animals-cow.jpg
 ```
 Terminal image viewer: https://github.com/stefanhaustein/TerminalImageViewer
 
-
+Train:
+```
+python train.py --data coco.yaml --cfg yolov5n.yaml --weights '' --batch-size 128
+                                       yolov5s                                64
+                                       yolov5m                                40
+                                       yolov5l                                24
+                                       yolov5x                                16
+```
 
 
