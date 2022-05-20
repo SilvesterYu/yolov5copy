@@ -9,10 +9,13 @@ train path: yolo_env/datasets/coco128/images/train2017
 
 val path: yolo_env/datasets/coco128/images/train2017
 
+---
 
 ### detect.py
 
 referenced class Annotator()
+
+---
 
 ### utils\plots.py: defined class Annotator()
 
