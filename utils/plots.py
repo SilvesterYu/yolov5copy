@@ -105,6 +105,9 @@ class Annotator:
             axis_x = int(box[2]) - int(box[0])
             axis_y = int(box[3]) - int(box[1])
 
+            print("-"*30)
+            print(center_x, center_y, axis_x, axis_y)
+
             center_coordinates = (center_x, center_y)
             axesLength = (axis_x, axis_y)
             angle = 0
