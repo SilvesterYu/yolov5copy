@@ -118,7 +118,7 @@ class Annotator:
             thickness = -1
 
             #cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness)
-            cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, thickness, cv2.CV_AA)
+            cv2.ellipse(self.im, center_coordinates, axesLength, angle, startAngle, endAngle, color, cv2.CV_AA)
             
             # -- end of ellipse data -- #
             if label:
