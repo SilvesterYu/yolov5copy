@@ -384,15 +384,13 @@ def plot_labels(labels, names=(), save_dir=Path('')):
     for cls, *box in labels[:1000]:
         # -- converting the xywh to xyxy is just for imageDraw's input format -- #
         # -- imageDraw will draw with the provided coordinates -- #
-        ImageDraw.Draw(img).rectangle(box, fill ="# ffff33", csawidth=1, outline=colors(cls))  # plot
+        ImageDraw.Draw(img).rectangle(box, fill="blue", width=1, outline=colors(cls))  # plot
     ax[1].imshow(img)
     ax[1].axis('off')
 
     for a in [0, 1, 2, 3]:
         for s in ['top', 'right', 'left', 'bottom']:
             ax[a].spines[s].set_visible(False)
-    print(")"*100)
-    print(save_dir)
 
     plt.savefig(save_dir / 'labels.jpg', dpi=200)
     matplotlib.use('Agg')
