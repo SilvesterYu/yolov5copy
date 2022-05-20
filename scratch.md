@@ -37,6 +37,8 @@ used plot_labels which calls *xywh2xyxy* function
 
 labels is fed into plot_labels, labels come from labels = np.concatenate(dataset.labels, 0)
 
+dataset comes from create_dataloader. train_path is fed. 
+
 ---
 
 hubconf.py: referenced AutoShape()
