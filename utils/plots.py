@@ -107,6 +107,7 @@ class Annotator:
 
             print("-"*30)
             print(center_x, center_y, axis_x, axis_y)
+            print(p1, p2)
 
             center_coordinates = (center_x, center_y)
             axesLength = (axis_x, axis_y)
