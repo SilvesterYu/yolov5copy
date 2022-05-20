@@ -84,11 +84,11 @@ class Annotator:
     def box_label(self, box, label='', color=(128, 128, 128), txt_color=(255, 255, 255)):
         # Add one xyxy box to image with label
         if self.pil or not is_ascii(label):
-            self.draw.ellipse(box, width=self.lw, outline=color)  # box
+            self.draw.rectangle(box, width=self.lw, outline=color)  # box
             if label:
                 w, h = self.font.getsize(label)  # text width, height
                 outside = box[1] - h >= 0  # label fits outside box
-                self.draw.ellipse(
+                self.draw.rectangle(
                     (box[0], box[1] - h if outside else box[1], box[0] + w + 1,
                      box[1] + 1 if outside else box[1] + h + 1),
                     fill=color,
@@ -97,13 +97,37 @@ class Annotator:
                 self.draw.text((box[0], box[1] - h if outside else box[1]), label, fill=txt_color, font=self.font)
         else:  # cv2
             p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
-            cv2.ellipse(self.im, (p1, p2), color, thickness=self.lw, lineType=cv2.LINE_AA)
+            #cv2.rectangle(self.im, p1, p2, color, thickness=self.lw, lineType=cv2.LINE_AA)
+
+            # -- elllipse data -- #
+            center_x = (int(box[0]) + int(box[2]))/2
+            center_y = (int(box[1]) + int(box[3]))/2
+            axis_x = int(box[2]) - int(box[0])
+            axis_y = int(box[3]) - int(box[1])
+
+            center_coordinates = (center_x, center_y)
+            axesLength = (axis_x, axis_y)
+            angle = 30
+            startAngle = 0
+            endAngle = 360
+            thickness = -1
+
+            cv2.ellipse(self.im, center_coordinates, axesLength, angle,
+                                    startAngle, endAngle, color, thickness)
+
+            # -- end of ellipse data -- #
             if label:
                 tf = max(self.lw - 1, 1)  # font thickness
                 w, h = cv2.getTextSize(label, 0, fontScale=self.lw / 3, thickness=tf)[0]  # text width, height
                 outside = p1[1] - h >= 3
                 p2 = p1[0] + w, p1[1] - h - 3 if outside else p1[1] + h + 3
-                cv2.ellipse(self.im, (p1, p2), color, -1, cv2.LINE_AA)  # filled
+                #cv2.rectangle(self.im, p1, p2, color, -1, cv2.LINE_AA)  # filled
+
+                # -- ellipse -- #
+                cv2.ellipse(self.im, center_coordinates, axesLength, angle,
+                                    startAngle, endAngle, color, thickness)
+                # --
+
                 cv2.putText(self.im,
                             label, (p1[0], p1[1] - 2 if outside else p1[1] + h + 2),
                             0,
@@ -375,6 +399,7 @@ def plot_labels(labels, names=(), save_dir=Path('')):
     # -- represent each anchor box with top-left (x1, y1) and bottom-right (x2, y2) -- #
     labels[:, 1:] = xywh2xyxy(labels[:, 1:]) * 2000
     img = Image.fromarray(np.ones((2000, 2000, 3), dtype=np.uint8) * 255)
+
     for cls, *box in labels[:1000]:
         # -- converting the xywh to xyxy is just for imageDraw's input format -- #
         # -- imageDraw will draw with the provided coordinates -- #
