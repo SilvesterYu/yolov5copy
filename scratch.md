@@ -1,5 +1,10 @@
 ## Clues
 
+```
+python train.py --data coco128.yaml --cfg yolov5s.yaml --weights '' --batch-size 128 --epochs 5
+
+```
+
 detect.py: referenced class Annotator()
 
 ### utils\plots.py: defined class Annotator()
