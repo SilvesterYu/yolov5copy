@@ -650,30 +650,18 @@ def xyxy2xywh(x):
     y[:, 3] = x[:, 3] - x[:, 1]  # height
     return y
 
-
+# -- returns the top-left (x1, y1) and top-right (x2, y2) -- #
 def xywh2xyxy(x):
     # Convert nx4 boxes from [x, y, w, h] to [x1, y1, x2, y2] where xy1=top-left, xy2=bottom-right
     y = x.clone() if isinstance(x, torch.Tensor) else np.copy(x)
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"*3)
-    print("from general.py, xywh2xyxy")
-    print("before")
-    print(y)
-    print("---")
-    print(x[:, 0])
-    print("---")
-    print(x[:, 1])
-    print("---")
-    print(x[:, 2])
-    print("---")
-    print(x[:, 3])
-    print("---")
+    # -- x - w/2 -- #
     y[:, 0] = x[:, 0] - x[:, 2] / 2  # top left x
+    # -- y - h/2 -- #
     y[:, 1] = x[:, 1] - x[:, 3] / 2  # top left y
+    # -- x + w/2 -- #
     y[:, 2] = x[:, 0] + x[:, 2] / 2  # bottom right x
+    # -- y + h/2 -- #
     y[:, 3] = x[:, 1] + x[:, 3] / 2  # bottom right y
-    print("after")
-    print(y)
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"*3)
     return y
 
 
