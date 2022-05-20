@@ -158,7 +158,7 @@ class Annotator:
                 cv2.putText(self.im, 'OpenCV', org, font, 
                                 fontScale, color, thickness, cv2.LINE_AA)
                 cv2.putText(self.im,
-                            label, (center_x, center_y - axis_y/2 if outside else center_x, center_y - axis_y/2,
+                            label, (center_x, center_y - axis_y/2 if outside else center_x, center_y - axis_y/2),
                             self.lw / 3,
                             color,
                             thickness=tf
