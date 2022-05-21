@@ -288,7 +288,7 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
     if xywh: # transform xywh to xy w/2 h/2 (half axes)
         (b1_x, b1_y, w1, h1), (b2_x, b2_y, w2, h2) = box1.chunk(4, 1), box2.chunk(4, 1)
         # half axes for ellipse
-        b1_halfw, b1_halfh, b2_halfw, hb2_halfh2_ = w1 / 2, h1 / 2, w2 / 2, h2 / 2
+        b1_halfw, b1_halfh, b2_halfw, b2_halfh = w1 / 2, h1 / 2, w2 / 2, h2 / 2
 
         (x1, y1, w1, h1), (x2, y2, w2, h2) = box1.chunk(4, 1), box2.chunk(4, 1)
         w1_, h1_, w2_, h2_ = w1 / 2, h1 / 2, w2 / 2, h2 / 2
