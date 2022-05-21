@@ -309,8 +309,8 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
             (torch.min(b1_y2, b2_y2) - torch.max(b1_y1, b2_y1)).clamp(0)
 
     print("+++++++++ checking tensor b1_x2 +++++++++")
-    for i in range(len(b1_x)):
-        print(list(b1_x[i]))
+    b1_x_np = b1_x.numpy()
+    print(b1_x_np)
 
 
     # Union Area
