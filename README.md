@@ -8,6 +8,13 @@
 pip3 install torch==1.8.2+cpu torchvision==0.9.2+cpu torchaudio==0.8.2 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
 ```
 
+When running on mac, you will need torch 1.10 (torch 1.11 is unstable)
+
+```
+pip install torch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1
+
+```
+
 ### To Run
 
 Execute the following outside of yolo_env folder
