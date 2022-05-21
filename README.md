@@ -49,7 +49,7 @@ python3 detect.py --weights yolov5s.pt --img 640 --conf 0.25 --source 'Best-farm
 Use tiv to display the saved image in terminal
 
 ```
-tiv runs/detect/exp3/Best-farm-animals-cow.jpg
+feh runs/detect/exp3/Best-farm-animals-cow.jpg
 ```
 Terminal image viewer: https://github.com/stefanhaustein/TerminalImageViewer
 
