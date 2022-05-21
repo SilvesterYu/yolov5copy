@@ -121,9 +121,6 @@ class Model(nn.Module):
             m.stride = torch.tensor([s / x.shape[-2] for x in self.forward(torch.zeros(1, ch, s, s))])  # forward
             check_anchor_order(m)  # must be in pixel-space (not grid-space)
             m.anchors /= m.stride.view(-1, 1, 1)
-            print("-------- from models.py ---------")
-            print("m.anchors")
-            print(m.anchors)
             self.stride = m.stride
             self._initialize_biases()  # only run once
 
@@ -179,7 +176,6 @@ class Model(nn.Module):
                 y = img_size[0] - y  # de-flip ud
             elif flips == 3:
                 x = img_size[1] - x  # de-flip lr
-            print("------ from yolo.py -------")
             p = torch.cat((x, y, wh, p[..., 4:]), -1)
         return p
 
