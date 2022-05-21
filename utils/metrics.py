@@ -331,7 +331,7 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
         ellipse_test1 = create_ellipse((e_b1_x,e_b1_y),(e_b1_halfw,e_b1_halfh),0)
         ellipse_test2 = create_ellipse((e_b2_x,e_b2_y),(e_b2_halfw,e_b2_halfh),0)
         intersect_test = ellipse_test1.intersection(ellipse_test2)
-        loss_list.append([intersect_test])
+        loss_list.append([intersect_test.area])
     print(len(loss_list))
     print(len(b1_x))
     print(loss_list[:100])
