@@ -310,7 +310,9 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
 
     print("+++++++++ checking tensor b1_x2 +++++++++")
     b1_x_np = b1_x.detach().numpy()
-    print(b1_x_np)
+    for item in b1_x_np:
+        print(item)
+        print(type(item))
 
 
     # Union Area
