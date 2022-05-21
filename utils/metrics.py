@@ -11,6 +11,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 
+# --
+from matplotlib import pyplot as plt
+from shapely.geometry.point import Point
+from shapely import affinity
+from matplotlib.patches import Polygon
+import numpy as np
+# --
 
 def fitness(x):
     # Model fitness as a weighted combination of metrics
@@ -257,9 +264,7 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
             (torch.min(b1_y2, b2_y2) - torch.max(b1_y1, b2_y1)).clamp(0)
 
     print("+++++++++ checking tensor b1_x2 +++++++++")
-    for item in b1_x2:
-        print(item)
-        print(type(item))
+
 
     # Union Area
     union = w1 * h1 + w2 * h2 - inter + eps
