@@ -1,13 +1,12 @@
 ## Clues
 
 ```
-python train.py --data coco128.yaml --cfg yolov5s.yaml --weights '' --batch-size 128 --epochs 5
-
-```
-
-```
 python train.py --data coco128.yaml --cfg yolov5s.yaml --weights '' --batch-size 128 --epochs 1
 
+```
+
+```
+val.py --data coco128.yaml --weights yolov5s.pt --img 640 
 ```
 
 train path: yolo_env/datasets/coco128/images/train2017 
