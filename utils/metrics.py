@@ -308,7 +308,9 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
     inter = (torch.min(b1_x2, b2_x2) - torch.max(b1_x1, b2_x1)).clamp(0) * \
             (torch.min(b1_y2, b2_y2) - torch.max(b1_y1, b2_y1)).clamp(0)
 
+    # -- for ellipse IoU loss -- #
     print("+++++++++ checking tensor b1_x2 +++++++++")
+    loss_list = []
     b1_x_np = b1_x.detach().numpy()
     b1_y_np = b1_y.detach().numpy()
     b2_x_np = b2_x.detach().numpy()
@@ -329,7 +331,10 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
         ellipse_test1 = create_ellipse((e_b1_x,e_b1_y),(e_b1_halfw,e_b1_halfh),0)
         ellipse_test2 = create_ellipse((e_b2_x,e_b2_y),(e_b2_halfw,e_b2_halfh),0)
         intersect_test = ellipse_test1.intersection(ellipse_test2)
-        print(intersect_test.area)
+        loss_list.append([intersect_test])
+    print(len(loss_list))
+    print(len(b1_x))
+    print(loss_list[:100])
         
 
 
