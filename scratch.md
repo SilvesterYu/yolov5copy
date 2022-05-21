@@ -6,7 +6,7 @@ python train.py --data coco128.yaml --cfg yolov5s.yaml --weights '' --batch-size
 ```
 
 ```
-val.py --data coco128.yaml --weights yolov5s.pt --img 640 
+python val.py --data coco128.yaml --weights yolov5s.pt --img 640 
 ```
 
 train path: yolo_env/datasets/coco128/images/train2017 
