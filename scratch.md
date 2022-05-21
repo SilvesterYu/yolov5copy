@@ -53,7 +53,7 @@ plot_images(): the targets argument it takes is a 2-D array of 6 columns, column
 
 (2) Annotator.box_label(): it plots ellipse now, but the input is still upper-left + lower-right coordinates, which can be further modified to center point(x, y) and the 2 axes of an ellipse. There is the regular imageDraw.ellipse() and cv2.ellipse() which use different coordinates.
 
-(3) plot_images(): 
+(3) plot_images(): calls plot_labels()
 
 ---
 
@@ -73,6 +73,8 @@ labels is fed into plot_labels, labels come from labels = np.concatenate(dataset
 dataset comes from create_dataloader. train_path is fed. 
 
 Train.py calls Model Object from models\yolo.py Model()
+
+for calculating loss, it calls ComputeLoss() Object from loss.py
 
 [Editing made]
 
@@ -98,7 +100,8 @@ m.anchors: still needs investigation
 
 defined loss functions
 
-calls **bbox_iou** from utils.metrics.py: calculates the IoU loss
+defined class ComputeLoss() Object, which calls **bbox_iou** from utils.metrics.py: calculates the IoU loss
+
 
 ---
 
