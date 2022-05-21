@@ -255,6 +255,7 @@ def run(
         # Plot images
         if plots and batch_i < 3:
             print("----------------- testing val.py -----------------------")
+            print("This is targets: ", targets)
             plot_images(im, targets, paths, save_dir / f'val_batch{batch_i}_labels.jpg', names)  # labels
             plot_images(im, output_to_target(out), paths, save_dir / f'val_batch{batch_i}_pred.jpg', names)  # pred
 
