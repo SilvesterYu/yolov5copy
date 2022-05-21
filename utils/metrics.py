@@ -242,6 +242,8 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
 
     # Union Area
     union = w1 * h1 + w2 * h2 - inter + eps
+    print("this is union")
+    print(union)
 
     # IoU
     # -- the IoU value is just intersection over union -- #
