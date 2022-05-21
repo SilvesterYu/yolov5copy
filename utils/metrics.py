@@ -335,9 +335,9 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
     print(len(loss_list))
     print(len(b1_x))
     print(loss_list[:100])
+
+    # -- end of ellipse IoU loss -- #
         
-
-
     # Union Area
     union = w1 * h1 + w2 * h2 - inter + eps
 
