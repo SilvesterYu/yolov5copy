@@ -112,6 +112,12 @@ models\common.py: defined AutoShape()
 
 ---
 
+## Current Progress
+
+(1) Edited annotation functions called in train.py, val.py, and detect.py so they know how to draw circles now, nice.
+
+---
+
 ## Conclusions and must-dos
 
 If we want to change the shape of anchor boxes, xywh2xyxy has to be modified
