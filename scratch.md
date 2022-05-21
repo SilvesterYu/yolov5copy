@@ -53,7 +53,7 @@ plot_images(): the targets argument it takes is a 2-D array of 6 columns, column
 
 (2) Annotator.box_label(): it plots ellipse now, but the input is still upper-left + lower-right coordinates, which can be further modified to center point(x, y) and the 2 axes of an ellipse. There is the regular imageDraw.ellipse() and cv2.ellipse() which use different coordinates.
 
-(3) plot_images(): 
+(3) plot_images(): calls plot_labels()
 
 ---
 
@@ -72,6 +72,10 @@ labels is fed into plot_labels, labels come from labels = np.concatenate(dataset
 
 dataset comes from create_dataloader. train_path is fed. 
 
+Train.py calls Model Object from models\yolo.py Model()
+
+for calculating loss, it calls ComputeLoss() Object from loss.py
+
 [Editing made]
 
 (1) editing is made through plot_labels
@@ -84,6 +88,30 @@ calls plot_images() from plots.py
 
 ---
 
+### models/yolo.py
+
+defined Model() class
+
+m.anchors: still needs investigation
+
+---
+
+### loss.py
+
+defined loss functions
+
+defined class ComputeLoss() Object, which calls **bbox_iou** from utils.metrics.py: calculates the IoU loss
+
+
+---
+
+### utils/metrics.py
+
+defined **bbox_iou()** which calculates the IoU loss
+
+
+
+---
 ### Dataset Labels Format
 
 Location: yolo_env/datasets/coco128/labels/
@@ -124,4 +152,4 @@ If we want to change the shape of anchor boxes, xywh2xyxy has to be modified
 
 I need a training dataset. I'll then take the labeled boxes and first transform them into circles on the fly
 
-The IoU loss function needs to be recalculated (using calculus)
+The IoU loss function needs to be recalculated: **bbox_iou()** in utils/metrics.py
