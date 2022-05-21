@@ -114,7 +114,7 @@ models\common.py: defined AutoShape()
 
 ## Current Progress
 
-(1) Edited annotation functions called in train.py, val.py, and detect.py so they know how to draw circles now, nice.
+(1) May 20 - May 21: Edited annotation functions called in train.py, val.py, and detect.py so they know how to draw circles now, nice.
 
 ---
 
