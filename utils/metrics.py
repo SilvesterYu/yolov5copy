@@ -311,12 +311,25 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
     print("+++++++++ checking tensor b1_x2 +++++++++")
     b1_x_np = b1_x.detach().numpy()
     b1_y_np = b1_y.detach().numpy()
+    b2_x_np = b2_x.detach().numpy()
+    b2_y_np = b2_y.detach().numpy()
+    b1_halfw_np = b1_halfw.detach().numpy()
+    b1_halfh_np = b1_halfh.detach().numpy()
+    b2_halfw_np = b2_halfw.detach().numpy()
+    b2_halfh_np = b2_halfh.detach().numpy()
     for i in range(len(b1_x)):
         e_b1_x = b1_x_np[i][0]
         e_b1_y = b1_y_np[i][0]
-        ellipse_test = create_ellipse((e_b1_x,e_b1_y),(3,2),50)
-        print(ellipse_test)
-        print(ellipse_test.area)
+        e_b2_x = b2_x_np[i][0]
+        e_b2_y = b2_y_np[i][0]
+        e_b1_halfw = b1_halfw_np[i][0]
+        e_b1_halfh = b1_halfh_np[i][0]
+        e_b2_halfw = b2_halfw_np[i][0]
+        e_b2_halfh = b2_halfh_np[i][0]
+        ellipse_test1 = create_ellipse((e_b1_x,e_b1_y),(e_b1_halfw,e_b1_halfh),0)
+        ellipse_test2 = create_ellipse((e_b2_x,e_b2_y),(e_b2_halfw,e_b2_halfh),0)
+        intersect_test = ellipse_test1.intersection(ellipse_test2)
+        print(intersect_test.area)
         
 
 
