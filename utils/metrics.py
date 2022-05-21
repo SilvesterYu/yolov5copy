@@ -232,16 +232,19 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
         w1, h1 = b1_x2 - b1_x1, b1_y2 - b1_y1 + eps
         w2, h2 = b2_x2 - b2_x1, b2_y2 - b2_y1 + eps
 
+    # -- all boxes transformed to (x1, y1) (x2, y2) -- #
     # Intersection area
+    # -- the leftmost right x - rightmost left x = intersection width -- #
+    # -- the highest bottom y - the lowest top y = intersection height -- #
+    # -- multiplied we get the intersection area -- #
     inter = (torch.min(b1_x2, b2_x2) - torch.max(b1_x1, b2_x1)).clamp(0) * \
             (torch.min(b1_y2, b2_y2) - torch.max(b1_y1, b2_y1)).clamp(0)
-    print("--------intersection---------")
-    print(inter)
 
     # Union Area
     union = w1 * h1 + w2 * h2 - inter + eps
 
     # IoU
+    # -- the IoU value is just intersection over union -- #
     iou = inter / union
     if CIoU or DIoU or GIoU:
         cw = torch.max(b1_x2, b2_x2) - torch.min(b1_x1, b2_x1)  # convex (smallest enclosing box) width
@@ -257,6 +260,7 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
             return iou - rho2 / c2  # DIoU
         c_area = cw * ch + eps  # convex area
         return iou - (c_area - union) / c_area  # GIoU https://arxiv.org/pdf/1902.09630.pdf
+    # -- whatever IoU...I'll need to change them to suit ellipses anyways -- #
     return iou  # IoU
 
 
