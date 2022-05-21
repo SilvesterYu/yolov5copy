@@ -220,6 +220,7 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
     # -- anyways the format should be top-left and bottom-right to calculate IoU -- #
     # -- box1, box2 seems to each be a bunch of boxes -- #
     print("-----------------   metrics.py   -----------------")
+    '''
     if xywh:  # transform from xywh to xyxy
         # -- x1 is a stack of values from all the x's in box1, same for the others -- #
         (x1, y1, w1, h1), (x2, y2, w2, h2) = box1.chunk(4, 1), box2.chunk(4, 1)
@@ -231,7 +232,41 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
         b2_x1, b2_y1, b2_x2, b2_y2 = box2.chunk(4, 1)
         w1, h1 = b1_x2 - b1_x1, b1_y2 - b1_y1 + eps
         w2, h2 = b2_x2 - b2_x1, b2_y2 - b2_y1 + eps
+    '''
+    if xywh: # transform xywh to xy w/2 h/2 (half axes)
+        (b1_x, b1_y, w1, h1), (b2_x, b2_y, w2, h2) = box1.chunk(4, 1), box2.chunk(4, 1)
+        # half axes for ellipse
+        b1_halfw, b1_halfh, b2_halfw, hb2_halfh2_ = w1 / 2, h1 / 2, w2 / 2, h2 / 2
 
+        (x1, y1, w1, h1), (x2, y2, w2, h2) = box1.chunk(4, 1), box2.chunk(4, 1)
+        w1_, h1_, w2_, h2_ = w1 / 2, h1 / 2, w2 / 2, h2 / 2
+        b1_x1, b1_x2, b1_y1, b1_y2 = x1 - w1_, x1 + w1_, y1 - h1_, y1 + h1_
+        b2_x1, b2_x2, b2_y1, b2_y2 = x2 - w2_, x2 + w2_, y2 - h2_, y2 + h2_
+    else: # transform top-left and bottom-right coordinates into xy w/2 h/2 (half axes)
+        b1_x1, b1_y1, b1_x2, b1_y2 = box1.chunk(4, 1)
+        b2_x1, b2_y1, b2_x2, b2_y2 = box2.chunk(4, 1)
+        # get the center coordinates
+        b1_x, b1_y = (b1_x1 + b1_x2) / 2, (b1_y1 + b1_y2) / 2
+        b2_x, b2_y = (b2_x1 + b2_x2) / 2, (b2_y1 + b2_y2) / 2
+        # get the axes
+        b1_halfw, b1_halfh = (b1_x2 - b1_x1) / 2, (b1_y2 - b1_y1) / 2
+        b2_halfw, b2_halfh = (b2_x2 - b2_x1) / 2, (b2_y2 - b2_y1) / 2
+
+    # Intersection area
+    inter = (torch.min(b1_x2, b2_x2) - torch.max(b1_x1, b2_x1)).clamp(0) * \
+            (torch.min(b1_y2, b2_y2) - torch.max(b1_y1, b2_y1)).clamp(0)
+
+    # Union Area
+    union = w1 * h1 + w2 * h2 - inter + eps
+    print("this is union")
+    print(union)
+
+    # IoU
+    # -- the IoU value is just intersection over union -- #
+    iou = inter / union
+
+
+    '''
     # -- all boxes transformed to (x1, y1) (x2, y2) -- #
     # Intersection area
     # -- the leftmost right x - rightmost left x = intersection width -- #
@@ -263,6 +298,9 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
         c_area = cw * ch + eps  # convex area
         return iou - (c_area - union) / c_area  # GIoU https://arxiv.org/pdf/1902.09630.pdf
     # -- whatever IoU...I'll need to change them to suit ellipses anyways -- #
+    return iou  # IoU
+    '''
+
     return iou  # IoU
 
 
