@@ -260,7 +260,13 @@ def plot_images(images, targets, paths=None, fname='images.jpg', names=None, max
             annotator.text((x + 5, y + 5 + h), text=Path(paths[i]).name[:40], txt_color=(220, 220, 220))  # filenames
         if len(targets) > 0:
             ti = targets[targets[:, 0] == i]  # image targets
+            print("------------------ from plots.py -------------------")
+            print("ti")
+            print(ti)
             boxes = xywh2xyxy(ti[:, 2:6]).T
+            print("boxes")
+            print(boxes)
+            print("------------------ from plots.py -------------------")            
             classes = ti[:, 1].astype('int')
             labels = ti.shape[1] == 6  # labels if no conf column
             conf = None if labels else ti[:, 6]  # check for confidence presence (label vs pred)
