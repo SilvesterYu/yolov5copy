@@ -45,12 +45,15 @@ utils\plots.py: plot_images() function references Annotator.rectangle(), which i
 
 **plot_labels()** plots the labels and rectangles
 
+plot_images(): the targets argument it takes is a 2-D array of 6 columns, column 0: perhaps means the image index column 1: class, column2-5: x y w h, column6: confidence that this item belongs to this class. It also calls annotator.rectangle(). When it annotates, it calls annotator.box_label() which is already modified.
+
 [Editing made]
 
 (1) plot_labels(): changed to ImageDraw.Draw(img).ellipse, because .rectangle() and .ellipse() both use upper-left + lower right coordinates as position points.
 
-(2) Annotator.box_label(): it plots ellipse now, but the input is still upper-left + lower-right coordinates, which can be further modified to center point(x, y) and the 2 axes of an ellipse. 
+(2) Annotator.box_label(): it plots ellipse now, but the input is still upper-left + lower-right coordinates, which can be further modified to center point(x, y) and the 2 axes of an ellipse. There is the regular imageDraw.ellipse() and cv2.ellipse() which use different coordinates.
 
+(3) plot_images(): 
 
 ---
 
