@@ -84,6 +84,7 @@ class Annotator:
     def box_label(self, box, label='', color=(128, 128, 128), txt_color=(255, 255, 255)):
         # Add one xyxy box to image with label
         if self.pil or not is_ascii(label):
+            # -- because ellipse() and rectangle() here use the same coordinate data -- #
             self.draw.ellipse(box, width=self.lw, outline=color)  # box
             if label:
                 w, h = self.font.getsize(label)  # text width, height
