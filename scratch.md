@@ -20,6 +20,10 @@ val path: yolo_env/datasets/coco128/images/train2017
 
 referenced class Annotator()
 
+[Editing made]
+
+(1) Drawing ellipse is done by modifying annotator.box_label() function in plots.py
+
 ---
 
 ### utils\plots.py: defined class Annotator()
@@ -42,6 +46,13 @@ utils\plots.py: plot_images() function references Annotator.rectangle(), which i
 
 **plot_labels()** plots the labels and rectangles
 
+[Editing made]
+
+(1) plot_labels(): changed to ImageDraw.Draw(img).ellipse, because .rectangle() and .ellipse() both use upper-left + lower right coordinates as position points.
+
+(2) Annotator.box_label(): it plots ellipse now, but the input is still upper-left + lower-right coordinates, which can be further modified to center point(x, y) and the 2 axes of an ellipse. 
+
+
 ---
 
 utils\plots.py uses *xywh2xyxy* function in plot_labels() function, plot_images(), 
@@ -58,6 +69,16 @@ used plot_labels which calls *xywh2xyxy* function
 labels is fed into plot_labels, labels come from labels = np.concatenate(dataset.labels, 0)
 
 dataset comes from create_dataloader. train_path is fed. 
+
+[Editing made]
+
+(1) editing is made through plot_labels
+
+---
+
+### val.py
+
+calls plot_images() from plots.py
 
 ---
 
