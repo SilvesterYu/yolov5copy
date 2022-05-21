@@ -121,6 +121,9 @@ class Model(nn.Module):
             m.stride = torch.tensor([s / x.shape[-2] for x in self.forward(torch.zeros(1, ch, s, s))])  # forward
             check_anchor_order(m)  # must be in pixel-space (not grid-space)
             m.anchors /= m.stride.view(-1, 1, 1)
+            print("-------- from models.py ---------")
+            print("m.anchors")
+            print(m.anchors)
             self.stride = m.stride
             self._initialize_biases()  # only run once
 
@@ -161,6 +164,7 @@ class Model(nn.Module):
                 feature_visualization(x, m.type, m.i, save_dir=visualize)
         return x
 
+    # -- anchor -- #
     def _descale_pred(self, p, flips, scale, img_size):
         # de-scale predictions following augmented inference (inverse operation)
         if self.inplace:
