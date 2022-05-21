@@ -310,9 +310,14 @@ def bbox_iou(box1, box2, xywh=True, GIoU=False, DIoU=False, CIoU=False, eps=1e-7
 
     print("+++++++++ checking tensor b1_x2 +++++++++")
     b1_x_np = b1_x.detach().numpy()
-    for item in b1_x_np:
-        print(item[0])
-        print(type(item[0]))
+    b1_y_np = b1_y.detach().numpy()
+    for i in range(len(b1_x)):
+        e_b1_x = b1_x_np[i][0]
+        e_b1_y = b1_y_np[i][0]
+        ellipse_test = create_ellipse((e_b1_x,e_b1_y),(3,2),50)
+        print(ellipse_test)
+        print(ellipse_test.area)
+        
 
 
     # Union Area
