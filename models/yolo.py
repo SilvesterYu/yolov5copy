@@ -179,6 +179,7 @@ class Model(nn.Module):
                 y = img_size[0] - y  # de-flip ud
             elif flips == 3:
                 x = img_size[1] - x  # de-flip lr
+            print("------ from yolo.py -------")
             p = torch.cat((x, y, wh, p[..., 4:]), -1)
         return p
 
